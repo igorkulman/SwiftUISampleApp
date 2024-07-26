@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct SetupView: View {
-    @State private var viewModel: ViewModel
+    @State private var viewModel: SetupViewModel
 
     init(settings: Settings, onFinished: @escaping () -> Void) {
-        viewModel = ViewModel(
+        viewModel = SetupViewModel(
             settings: settings,
             onFinished: onFinished
         )
@@ -31,49 +31,6 @@ struct SetupView: View {
                     }.disabled(!viewModel.isValid)
                 }
             }
-    }
-}
-
-// MARK: View Model
-
-extension SetupView {
-    @Observable
-    final class ViewModel {
-        var sources: [RssSource]
-        var selected: RssSource?
-
-        var isValid: Bool {
-            selected != nil
-        }
-
-        private let settings: Settings
-        private let onFinished: () -> Void
-
-        init(settings: Settings, onFinished: @escaping () -> Void) {
-            self.settings = settings
-            self.onFinished = onFinished
-
-            guard let jsonData = Bundle.main.loadFile(filename: "sources.json") else {
-                fatalError()
-            }
-
-            do {
-                let decoder = JSONDecoder()
-                let all = try decoder.decode(Array<RssSource>.self, from: jsonData)
-                sources = all
-            } catch {
-                fatalError()
-            }
-        }
-
-        func select(source: RssSource) {
-            selected = source
-        }
-
-        func onNext() {
-            settings.set(selected)
-            onFinished()
-        }
     }
 }
 

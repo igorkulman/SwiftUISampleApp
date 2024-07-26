@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import WebKit
 
 struct DetailView: View {
     let item: RssItem
@@ -17,22 +16,5 @@ struct DetailView: View {
             .ignoresSafeArea()
             .navigationTitle(item.title)
             .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-// MARK: WKWebView
-
-extension DetailView {
-    private struct WebView: UIViewRepresentable {
-        let url: URL
-
-        func makeUIView(context: Context) -> WKWebView {
-            return WKWebView()
-        }
-
-        func updateUIView(_ webView: WKWebView, context: Context) {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
     }
 }

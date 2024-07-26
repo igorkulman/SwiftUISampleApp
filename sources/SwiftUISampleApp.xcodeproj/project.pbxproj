@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		F33C423D2C53E5A100830756 /* LoadableScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C423C2C53E5A100830756 /* LoadableScreen.swift */; };
+		F33C42432C53E78700830756 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C42422C53E78700830756 /* FeedViewModel.swift */; };
+		F33C42462C53E7F600830756 /* LibrariesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C42452C53E7F600830756 /* LibrariesViewModel.swift */; };
+		F33C42482C53E83100830756 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C42472C53E83100830756 /* AboutViewModel.swift */; };
+		F33C424A2C53E86800830756 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C42492C53E86800830756 /* SafariWebView.swift */; };
+		F33C424D2C53E8B600830756 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C424C2C53E8B600830756 /* SetupViewModel.swift */; };
+		F33C424F2C53E91A00830756 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C424E2C53E91A00830756 /* WebView.swift */; };
 		F3A329D52C52917800C73225 /* SwiftUISampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A329D42C52917800C73225 /* SwiftUISampleAppApp.swift */; };
 		F3A329D92C52917A00C73225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A329D82C52917A00C73225 /* Assets.xcassets */; };
 		F3A329DC2C52917A00C73225 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A329DB2C52917A00C73225 /* Preview Assets.xcassets */; };
@@ -41,6 +47,12 @@
 
 /* Begin PBXFileReference section */
 		F33C423C2C53E5A100830756 /* LoadableScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableScreen.swift; sourceTree = "<group>"; };
+		F33C42422C53E78700830756 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		F33C42452C53E7F600830756 /* LibrariesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrariesViewModel.swift; sourceTree = "<group>"; };
+		F33C42472C53E83100830756 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
+		F33C42492C53E86800830756 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
+		F33C424C2C53E8B600830756 /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
+		F33C424E2C53E91A00830756 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F3A329D12C52917800C73225 /* SwiftUISampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUISampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A329D42C52917800C73225 /* SwiftUISampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISampleAppApp.swift; sourceTree = "<group>"; };
 		F3A329D82C52917A00C73225 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,6 +96,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F33C42412C53E77A00830756 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F33C42422C53E78700830756 /* FeedViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F33C42442C53E7E500830756 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F33C42472C53E83100830756 /* AboutViewModel.swift */,
+				F33C42452C53E7F600830756 /* LibrariesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F33C424B2C53E89F00830756 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F33C424C2C53E8B600830756 /* SetupViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F3A329C82C52917800C73225 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A329EC2C52929300C73225 /* Models */,
+				F33C424B2C53E89F00830756 /* ViewModels */,
 				F3A329F02C52961700C73225 /* Views */,
 			);
 			path = Setup;
@@ -161,6 +199,7 @@
 			children = (
 				F3A329E22C5291CC00C73225 /* Models */,
 				F3A32A1C2C53B00F00C73225 /* Services */,
+				F33C42412C53E77A00830756 /* ViewModels */,
 				F3A329F72C529CA100C73225 /* Views */,
 			);
 			path = Feed;
@@ -178,9 +217,10 @@
 		F3A329F72C529CA100C73225 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F3A32A152C53AAC000C73225 /* DetailView.swift */,
 				F3A329F82C529CAB00C73225 /* FeedView.swift */,
 				F3A329FD2C529E4900C73225 /* ItemRow.swift */,
-				F3A32A152C53AAC000C73225 /* DetailView.swift */,
+				F33C424E2C53E91A00830756 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,8 +304,9 @@
 		F3A32A2F2C53C1FB00C73225 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				F3A32A332C53C20C00C73225 /* Views */,
 				F3A32A302C53C20000C73225 /* Models */,
+				F33C42442C53E7E500830756 /* ViewModels */,
+				F3A32A332C53C20C00C73225 /* Views */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -281,9 +322,10 @@
 		F3A32A332C53C20C00C73225 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F3A32A342C53C21300C73225 /* LibrariesView.swift */,
-				F3A32A362C53C3E100C73225 /* AboutView.swift */,
 				F3A32A382C53C7FC00C73225 /* AboutRow.swift */,
+				F3A32A362C53C3E100C73225 /* AboutView.swift */,
+				F3A32A342C53C21300C73225 /* LibrariesView.swift */,
+				F33C42492C53E86800830756 /* SafariWebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,23 +412,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33C42432C53E78700830756 /* FeedViewModel.swift in Sources */,
 				F3A32A3B2C53C8BD00C73225 /* Bundle+Extensions.swift in Sources */,
 				F3A329FE2C529E4900C73225 /* ItemRow.swift in Sources */,
 				F3A32A372C53C3E100C73225 /* AboutView.swift in Sources */,
 				F3A32A102C53A08300C73225 /* Container.swift in Sources */,
 				F3A32A062C539BE100C73225 /* CoordinatorView.swift in Sources */,
 				F3A32A162C53AAC000C73225 /* DetailView.swift in Sources */,
+				F33C424D2C53E8B600830756 /* SetupViewModel.swift in Sources */,
 				F3A329F92C529CAB00C73225 /* FeedView.swift in Sources */,
 				F3A329E42C5291D300C73225 /* RSSItem.swift in Sources */,
 				F3A32A322C53C20600C73225 /* Library.swift in Sources */,
 				F3A329F22C52962800C73225 /* SetupView.swift in Sources */,
 				F3A32A192C53AD0500C73225 /* Screen.swift in Sources */,
 				F3A329D52C52917800C73225 /* SwiftUISampleAppApp.swift in Sources */,
+				F33C424A2C53E86800830756 /* SafariWebView.swift in Sources */,
 				F3A32A1E2C53B01900C73225 /* Feed.swift in Sources */,
+				F33C42462C53E7F600830756 /* LibrariesViewModel.swift in Sources */,
 				F3A32A392C53C7FC00C73225 /* AboutRow.swift in Sources */,
 				F3A32A242C53B72300C73225 /* View+Error.swift in Sources */,
 				F3A329F42C52980300C73225 /* SourceRow.swift in Sources */,
 				F3A329E62C52920100C73225 /* RSSSource.swift in Sources */,
+				F33C424F2C53E91A00830756 /* WebView.swift in Sources */,
 				F3A32A352C53C21300C73225 /* LibrariesView.swift in Sources */,
 				F3A32A292C53BEA800C73225 /* Logger.swift in Sources */,
 				F3A32A1B2C53AE0F00C73225 /* Symbol.swift in Sources */,
@@ -394,6 +441,7 @@
 				F33C423D2C53E5A100830756 /* LoadableScreen.swift in Sources */,
 				F3A32A042C539ADF00C73225 /* Coordinator.swift in Sources */,
 				F3A32A132C53A48600C73225 /* ExpandAreaTap.swift in Sources */,
+				F33C42482C53E83100830756 /* AboutViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

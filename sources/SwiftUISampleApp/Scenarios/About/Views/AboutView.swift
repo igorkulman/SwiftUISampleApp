@@ -10,14 +10,10 @@ import SafariServices
 import SwiftUI
 
 struct AboutView: View {
-    enum NavigationTarget {
-        case libraries
-    }
+    @State private var viewModel: AboutViewModel
 
-    @State private var viewModel: ViewModel
-
-    init(onNavigation: @escaping (NavigationTarget) -> Void) {
-        viewModel = ViewModel(onNavigation: onNavigation)
+    init(onNavigation: @escaping (AboutViewModel.NavigationTarget) -> Void) {
+        viewModel = AboutViewModel(onNavigation: onNavigation)
     }
 
     var body: some View {
@@ -49,48 +45,6 @@ struct AboutView: View {
                 .ignoresSafeArea()
         }
         .navigationTitle("About")
-    }
-}
-
-// MARK: View Model
-
-extension AboutView {
-    @Observable
-    final class ViewModel {
-        let appName: String
-        let appVersion: String
-        var showWebView = false
-
-        private let onNavigation: (NavigationTarget) -> Void
-
-        init(onNavigation: @escaping (NavigationTarget) -> Void) {
-            self.onNavigation = onNavigation
-
-            appName = Bundle.main.appName
-            appVersion = "\(Bundle.main.appVersion) (\(Bundle.main.appBuild))"
-        }
-
-        func showLibraries() {
-            onNavigation(.libraries)
-        }
-
-        func showBlog() {
-            showWebView = true
-        }
-    }
-}
-
-// MARK: SFSafariViewController
-
-extension AboutView {
-    private struct SafariWebView: UIViewControllerRepresentable {
-        let url: URL
-
-        func makeUIViewController(context: Context) -> SFSafariViewController {
-            return SFSafariViewController(url: url)
-        }
-
-        func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
     }
 }
 
