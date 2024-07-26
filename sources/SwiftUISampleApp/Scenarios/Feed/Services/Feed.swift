@@ -26,25 +26,50 @@ extension Feed {
             parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { result in
                 switch result {
                 case let .success(feed):
-                    guard let rss = feed.rssFeed, let items = rss.items else {
-                        Logger.feed.error("RSS Feed return no items")
-                        continuation.resume(throwing: FeedError.emptyFeed)
+                    let sanitize = { (string: String?) -> String? in
+                        return string?
+                            .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+                            .trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
+
+                    if let rss = feed.rssFeed, let items = rss.items {
+                        let rssItems = items.compactMap { item -> RssItem? in
+                            guard let title = item.title,
+                                  let link = item.link.flatMap({ URL(string: $0) }) else {
+                                return nil
+                            }
+                            return RssItem(
+                                title: title,
+                                description: sanitize(item.description),
+                                link: link,
+                                pubDate: item.pubDate
+                            )
+                        }
+                        continuation.resume(returning: rssItems)
                         return
                     }
-                    let rssItems = items.compactMap { item -> RssItem? in
-                        guard let title = item.title,
-                              let link = item.link.flatMap({ URL(string: $0) }) else {
-                            return nil
+
+                    if let atom = feed.atomFeed, let items = atom.entries {
+                        let atomItems = items.compactMap { item -> RssItem? in
+                            guard let title = item.title,
+                                  let link = item.links?
+                                    .compactMap({ $0.attributes?.href })
+                                    .first.flatMap({ URL(string: $0) }) else {
+                                return nil
+                            }
+                            return RssItem(
+                                title: title,
+                                description: sanitize(item.content?.value),
+                                link: link,
+                                pubDate: item.updated
+                            )
                         }
-                        return RssItem(
-                            title: title,
-                            description: item.description?
-                                .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil),
-                            link: link,
-                            pubDate: item.pubDate
-                        )
+                        continuation.resume(returning: atomItems)
+                        return
                     }
-                    continuation.resume(returning: rssItems)
+
+                    Logger.feed.error("RSS Feed return no items")
+                    continuation.resume(throwing: FeedError.emptyFeed)
                 case let .failure(error):
                     Logger.feed.error("Fetching RSS Feed failed [error: \(error.localizedDescription)]")
                     continuation.resume(throwing: error)
