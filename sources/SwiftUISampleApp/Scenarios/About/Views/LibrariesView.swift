@@ -22,6 +22,8 @@ struct LibrariesView: View {
     }
 }
 
+// MARK: View Model
+
 extension LibrariesView {
     private class ViewModel {
         let libraries: [Library]

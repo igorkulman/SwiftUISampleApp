@@ -39,10 +39,10 @@ struct AboutView: View {
                 }
                 Spacer()
             }
-            AboutRow(title: "Used libraries") {
+            AboutRow(title: NSLocalizedString("Used libraries", comment: "")) {
                 viewModel.showLibraries()
             }
-            AboutRow(title: "Author's blog") {
+            AboutRow(title: NSLocalizedString("Author's blog", comment: "")) {
                 viewModel.showBlog()
             }
         }
@@ -53,6 +53,8 @@ struct AboutView: View {
         .navigationTitle("About")
     }
 }
+
+// MARK: View Model
 
 extension AboutView {
     private class ViewModel: ObservableObject {
@@ -78,6 +80,8 @@ extension AboutView {
         }
     }
 }
+
+// MARK: SFSafariViewController
 
 extension AboutView {
     private struct SafariWebView: UIViewControllerRepresentable {

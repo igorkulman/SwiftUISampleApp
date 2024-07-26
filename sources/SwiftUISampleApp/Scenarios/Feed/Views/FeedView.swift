@@ -58,6 +58,8 @@ struct FeedView: View {
     }
 }
 
+// MARK: View Model
+
 extension FeedView {
     @MainActor
     private class ViewModel: ObservableObject {

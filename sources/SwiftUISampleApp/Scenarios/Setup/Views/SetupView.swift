@@ -36,6 +36,8 @@ struct SetupView: View {
     }
 }
 
+// MARK: View Model
+
 extension SetupView {
     private class ViewModel: ObservableObject {
         @Published var sources: [RssSource]

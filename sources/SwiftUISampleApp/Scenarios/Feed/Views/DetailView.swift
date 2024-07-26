@@ -20,6 +20,8 @@ struct DetailView: View {
     }
 }
 
+// MARK: WKWebView
+
 extension DetailView {
     private struct WebView: UIViewRepresentable {
         let url: URL
