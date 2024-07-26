@@ -5,6 +5,7 @@
 //  Created by Igor Kulman on 25.07.2024.
 //
 
+import App
 import SwiftUI
 
 @main
