@@ -1,0 +1,27 @@
+[
+ {
+ "title": "Coding Journal",
+ "url": "https://blog.kulman.sk",
+ "rss": "https://blog.kulman.sk/index.xml",
+ "icon": "https://blog.kulman.sk/apple-touch-icon.png"
+ },
+ {
+ "title": "Hacker News",
+ "url": "https://news.ycombinator.com",
+ "rss": "https://news.ycombinator.com/rss",
+ "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Y_Combinator_Logo_400.gif"
+ },
+ {
+ "title": "The Verge",
+ "url": "https://www.theverge.com",
+ "rss": "https://www.theverge.com/rss/index.xml",
+ "icon": "https://cdn0.vox-cdn.com/uploads/chorus_asset/file/7395351/android-chrome-192x192.0.png"
+ },
+ {
+ "title": "Wired",
+ "url": "https://www.wired.com",
+ "rss": "https://www.wired.com/feed/rss",
+ "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Wired_logo.svg/320px-Wired_logo.svg.png"
+ }
+]
+
