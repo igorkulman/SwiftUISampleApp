@@ -12,7 +12,7 @@ private struct ExpandAreaTap: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             Rectangle()
-                .foregroundColor(Color.white)
+                .foregroundColor(.clear)
                 .contentShape(Rectangle())
             content
         }
