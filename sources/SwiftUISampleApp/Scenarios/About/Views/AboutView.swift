@@ -14,12 +14,10 @@ struct AboutView: View {
         case libraries
     }
 
-    @StateObject private var viewModel: ViewModel
+    @State private var viewModel: ViewModel
 
     init(onNavigation: @escaping (NavigationTarget) -> Void) {
-        _viewModel = StateObject(
-            wrappedValue: ViewModel(onNavigation: onNavigation)
-        )
+        viewModel = ViewModel(onNavigation: onNavigation)
     }
 
     var body: some View {
@@ -57,10 +55,11 @@ struct AboutView: View {
 // MARK: View Model
 
 extension AboutView {
-    private class ViewModel: ObservableObject {
+    @Observable
+    final class ViewModel {
         let appName: String
         let appVersion: String
-        @Published var showWebView = false
+        var showWebView = false
 
         private let onNavigation: (NavigationTarget) -> Void
 

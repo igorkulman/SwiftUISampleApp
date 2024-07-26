@@ -9,14 +9,12 @@ import Foundation
 import SwiftUI
 
 struct SetupView: View {
-    @StateObject private var viewModel: ViewModel
+    @State private var viewModel: ViewModel
 
     init(settings: Settings, onFinished: @escaping () -> Void) {
-        _viewModel = StateObject(
-            wrappedValue: ViewModel(
-                settings: settings,
-                onFinished: onFinished
-            )
+        viewModel = ViewModel(
+            settings: settings,
+            onFinished: onFinished
         )
     }
 
@@ -39,9 +37,10 @@ struct SetupView: View {
 // MARK: View Model
 
 extension SetupView {
-    private class ViewModel: ObservableObject {
-        @Published var sources: [RssSource]
-        @Published var selected: RssSource?
+    @Observable
+    final class ViewModel {
+        var sources: [RssSource]
+        var selected: RssSource?
 
         var isValid: Bool {
             selected != nil

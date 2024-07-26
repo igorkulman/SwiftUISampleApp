@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct CoordinatorView: View {
-    @StateObject private var coordinator: Coordinator
+    @State private var coordinator: Coordinator
 
     init(container: Container) {
-        _coordinator = StateObject(wrappedValue: Coordinator(container: container))
+        coordinator = Coordinator(container: container)
     }
 
     var body: some View {

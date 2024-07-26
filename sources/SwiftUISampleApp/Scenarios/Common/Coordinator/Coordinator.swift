@@ -9,8 +9,9 @@ import Foundation
 import OSLog
 import SwiftUI
 
-final class Coordinator: ObservableObject {
-    @Published var path = NavigationPath()
+@Observable
+final class Coordinator {
+    var path = NavigationPath()
 
     private let container: Container
 

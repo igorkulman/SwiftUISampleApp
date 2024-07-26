@@ -13,15 +13,13 @@ struct FeedView: View {
         case item(RssItem)
         case about
     }
-    @StateObject private var viewModel: ViewModel
+    @State private var viewModel: ViewModel
 
     init(settings: Settings, feed: Feed, onNavigation: @escaping (NavigationTarget) -> Void) {
-        _viewModel = StateObject(
-            wrappedValue: ViewModel(
-                settings: settings,
-                feed: feed,
-                onNavigation: onNavigation
-            )
+        viewModel = ViewModel(
+            settings: settings,
+            feed: feed,
+            onNavigation: onNavigation
         )
     }
 
@@ -61,14 +59,14 @@ struct FeedView: View {
 // MARK: View Model
 
 extension FeedView {
-    @MainActor
-    private class ViewModel: ObservableObject {
+    @Observable
+    final class ViewModel {
         var title: String {
             source.title
         }
-        @Published var items: [RssItem] = []
-        @Published var isLoading: Bool = true
-        @Published var error: Error?
+        var items: [RssItem] = []
+        var isLoading: Bool = true
+        var error: Error?
 
         private let onNavigation: (NavigationTarget) -> Void
         private let feed: Feed
