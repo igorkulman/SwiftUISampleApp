@@ -13,7 +13,6 @@ struct DetailView: View {
 
     var body: some View {
         WebView(url: item.link)
-            .ignoresSafeArea()
             .navigationTitle(item.title)
             .navigationBarTitleDisplayMode(.inline)
     }
