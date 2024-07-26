@@ -24,8 +24,8 @@ struct FeedView: View {
     }
 
     var body: some View {
-        ZStack {
-            List(viewModel.items, id: \.title) { item in
+        LoadableScreen($viewModel.state) { data in
+            List(data, id: \.title) { item in
                 ItemRow(item: item) {
                     viewModel.showDetail(item: item)
                 }
@@ -34,10 +34,7 @@ struct FeedView: View {
                     await viewModel.load()
                 }
             }
-            if viewModel.isLoading {
-                ProgressView()
-            }
-        }.errorAlert(error: $viewModel.error)
+        }
         .navigationTitle(viewModel.title)
         .navigationBarBackButtonHidden(true)
         .onAppear {
@@ -64,9 +61,7 @@ extension FeedView {
         var title: String {
             source.title
         }
-        var items: [RssItem] = []
-        var isLoading: Bool = true
-        var error: Error?
+        var state: ScreenState<[RssItem]> = .loading
 
         private let onNavigation: (NavigationTarget) -> Void
         private let feed: Feed
@@ -84,11 +79,11 @@ extension FeedView {
 
         func load() async {
             do {
-                items = try await feed.get(source)
+                let items = try await feed.get(source)
+                state = .loaded(data: items)
             } catch {
-                self.error = error
+                state.toError(error: error)
             }
-            isLoading = false
         }
 
         func showDetail(item: RssItem) {

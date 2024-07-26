@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F33C423D2C53E5A100830756 /* LoadableScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C423C2C53E5A100830756 /* LoadableScreen.swift */; };
 		F3A329D52C52917800C73225 /* SwiftUISampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A329D42C52917800C73225 /* SwiftUISampleAppApp.swift */; };
 		F3A329D92C52917A00C73225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A329D82C52917A00C73225 /* Assets.xcassets */; };
 		F3A329DC2C52917A00C73225 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A329DB2C52917A00C73225 /* Preview Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F33C423C2C53E5A100830756 /* LoadableScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableScreen.swift; sourceTree = "<group>"; };
 		F3A329D12C52917800C73225 /* SwiftUISampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUISampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A329D42C52917800C73225 /* SwiftUISampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISampleAppApp.swift; sourceTree = "<group>"; };
 		F3A329D82C52917A00C73225 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,8 +159,8 @@
 		F3A329ED2C5292A800C73225 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				F3A32A1C2C53B00F00C73225 /* Services */,
 				F3A329E22C5291CC00C73225 /* Models */,
+				F3A32A1C2C53B00F00C73225 /* Services */,
 				F3A329F72C529CA100C73225 /* Views */,
 			);
 			path = Feed;
@@ -189,6 +191,7 @@
 				F3A32A112C53A48100C73225 /* Modifiers */,
 				F3A32A1A2C53AE0F00C73225 /* Symbol.swift */,
 				F3A32A282C53BEA800C73225 /* Logger.swift */,
+				F33C423C2C53E5A100830756 /* LoadableScreen.swift */,
 				F3A32A232C53B72300C73225 /* View+Error.swift */,
 				F3A32A3A2C53C8BD00C73225 /* Bundle+Extensions.swift */,
 			);
@@ -388,6 +391,7 @@
 				F3A32A292C53BEA800C73225 /* Logger.swift in Sources */,
 				F3A32A1B2C53AE0F00C73225 /* Symbol.swift in Sources */,
 				F3A32A0E2C539F2000C73225 /* Settings.swift in Sources */,
+				F33C423D2C53E5A100830756 /* LoadableScreen.swift in Sources */,
 				F3A32A042C539ADF00C73225 /* Coordinator.swift in Sources */,
 				F3A32A132C53A48600C73225 /* ExpandAreaTap.swift in Sources */,
 			);

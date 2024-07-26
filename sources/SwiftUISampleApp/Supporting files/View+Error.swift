@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct LocalizedAlertError: LocalizedError {
+struct LocalizedAlertError<T>: LocalizedError {
     let underlyingError: LocalizedError
     var errorDescription: String? {
         underlyingError.errorDescription
@@ -21,14 +21,19 @@ struct LocalizedAlertError: LocalizedError {
         guard let localizedError = error as? LocalizedError else { return nil }
         underlyingError = localizedError
     }
+
+    init?(state: ScreenState<T>) {
+        guard let localizedError = state.error as? LocalizedError else { return nil }
+        underlyingError = localizedError
+    }
 }
 
 extension View {
-    func errorAlert(error: Binding<Error?>) -> some View {
-        let localizedAlertError = LocalizedAlertError(error: error.wrappedValue)
+    func errorAlert<T>(state: Binding<ScreenState<T>>) -> some View {
+        let localizedAlertError = LocalizedAlertError(state: state.wrappedValue)
         return alert(isPresented: .constant(localizedAlertError != nil), error: localizedAlertError) { _ in
             Button("OK") {
-                error.wrappedValue = nil
+                state.wrappedValue.toData()
             }
         } message: { error in
             Text(error.recoverySuggestion ?? "")
