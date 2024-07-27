@@ -10,7 +10,7 @@ import FeedKit
 import Foundation
 import OSLog
 
-public enum FeedError: LocalizedError {
+public enum FeedError: Error {
     case emptyFeed
 }
 
@@ -27,46 +27,15 @@ extension Feed {
             parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { result in
                 switch result {
                 case let .success(feed):
-                    let sanitize = { (string: String?) -> String? in
-                        return string?
-                            .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-                            .trimmingCharacters(in: .whitespacesAndNewlines)
-                    }
-
-                    if let rss = feed.rssFeed, let items = rss.items {
-                        let rssItems = items.compactMap { item -> RssItem? in
-                            guard let title = item.title,
-                                  let link = item.link.flatMap({ URL(string: $0) }) else {
-                                return nil
-                            }
-                            return RssItem(
-                                title: title,
-                                description: sanitize(item.description),
-                                link: link,
-                                pubDate: item.pubDate
-                            )
-                        }
+                    if let rssItems = feed.rssFeed?.items?.compactMap({ RssItem(item: $0) }) {
+                        Logger.feed.debug("Got \(rssItems.count) RSS items")
                         continuation.resume(returning: rssItems)
                         return
                     }
 
-                    if let atom = feed.atomFeed, let items = atom.entries {
-                        let atomItems = items.compactMap { item -> RssItem? in
-                            guard let title = item.title,
-                                  let link = item.links?
-                                    .compactMap({ $0.attributes?.href })
-                                    .first.flatMap({ URL(string: $0) }) else {
-                                return nil
-                            }
-                            return RssItem(
-                                title: title,
-                                description: sanitize(item.content?.value),
-                                link: link,
-                                pubDate: item.updated
-                            )
-                        }
+                    if let atomItems = feed.atomFeed?.entries?.compactMap({ RssItem(item: $0) }) {
+                        Logger.feed.debug("Got \(atomItems.count) Atom items")
                         continuation.resume(returning: atomItems)
-                        return
                     }
 
                     Logger.feed.error("RSS Feed return no items")
