@@ -1,0 +1,36 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "About" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O aplikácii"
+          }
+        }
+      }
+    },
+    "Author's blog" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autorov blog"
+          }
+        }
+      }
+    },
+    "Used libraries" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použité knižnice"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
