@@ -8,13 +8,16 @@ SwiftUI rewrite of my [iOSSampleApp](https://github.com/igorkulman/iOSSampleApp/
 
 * [Coordinators](https://blog.kulman.sk/architecting-ios-apps-coordinators/)
 * Dependency Injection
+* Modularization with SPM
 * MVVM
 
 ### Other concepts
 
+* Protocol Witnesses
 * Localization to 2 languages with String catalogs
 * Structured logging
 * Xcode build plugins
+* Xcode previews
 
 ## Getting started
 
