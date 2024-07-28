@@ -12,6 +12,13 @@ public struct RssSource: Codable, Hashable {
     public let url: URL
     public let rss: URL
     public let icon: String?
+
+    public init(title: String, url: URL, rss: URL, icon: String?) {
+        self.title = title
+        self.url = url
+        self.rss = rss
+        self.icon = icon
+    }
 }
 
 #if DEBUG
