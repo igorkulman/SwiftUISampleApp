@@ -1,0 +1,11 @@
+opt_out_usage
+
+default_platform(:ios)
+
+desc "Run Core unit tests"
+lane :tests do
+    scan(
+        devices: ["iPhone 15"],
+        project: "sources/SwiftUISampleApp.xcodeproj",        
+    )
+end
