@@ -15,6 +15,8 @@ SwiftUI rewrite of my [iOSSampleApp](https://github.com/igorkulman/iOSSampleApp/
 
 * Protocol Witnesses
 * Localization to 2 languages with String catalogs
+* Continuous integration with Github Actions
+* Unit tests
 * Structured logging
 * Xcode build plugins
 * Xcode previews
@@ -24,6 +26,7 @@ SwiftUI rewrite of my [iOSSampleApp](https://github.com/igorkulman/iOSSampleApp/
 ### Prerequisites
 
 * Xcode 15
+* [Fastlane](https://fastlane.tools/) (optional)
 
 ## Built with
 
