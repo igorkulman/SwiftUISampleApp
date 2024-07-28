@@ -59,25 +59,25 @@ extension Feed {
                 title: "Links for the intellectually curious, ranked by readers.",
                 description: "Comments",
                 link: URL(string: "https://github.com/nodejs/node/pull/53725")!,
-                pubDate: Date()
+                pubDate: Date(timeIntervalSince1970: 0)
             ),
             .init(
                 title: "Anyone can access deleted and private repository data on GitHub",
                 description: "Comments",
                 link: URL(string: "https://trufflesecurity.com/blog/anyone-can-access-deleted-and-private-repo-data-github")!,
-                pubDate: Date()
+                pubDate: Date(timeIntervalSince1970: 0)
             ),
             .init(
                 title: "My Favorite Algorithm: Linear Time Median Finding (2018)",
                 description: "Comments",
                 link: URL(string: "https://rcoh.me/posts/linear-time-median-finding/")!,
-                pubDate: Date()
+                pubDate: Date(timeIntervalSince1970: 0)
             ),
             .init(
                 title: "Generating sudokus for fun and no profit",
                 description: "Comments",
                 link: URL(string: "https://tn1ck.com/blog/how-to-generate-sudokus")!,
-                pubDate: Date()
+                pubDate: Date(timeIntervalSince1970: 0)
             )
         ]
     })
