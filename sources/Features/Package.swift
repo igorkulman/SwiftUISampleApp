@@ -35,6 +35,11 @@ let package = Package(
             ],
             plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
         ),
+        .testTarget(
+            name: "AboutTests",
+            dependencies: ["About"],
+            path: "Tests/Features/About"
+        ),
         .target(
             name: "Setup",
             dependencies: [
