@@ -21,6 +21,7 @@
 		F3A329D12C52917800C73225 /* SwiftUISampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUISampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A329D42C52917800C73225 /* SwiftUISampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISampleAppApp.swift; sourceTree = "<group>"; };
 		F3A329D82C52917A00C73225 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3EA80282C566B6E004612CF /* SwiftUISampleApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftUISampleApp.xctestplan; sourceTree = "<group>"; };
 		F3F1AE9A2C543F270028B236 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		F3F1AE9B2C543F270028B236 /* App */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = App; sourceTree = "<group>"; };
 		F3F1AE9C2C543F270028B236 /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Features; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		F3A329C82C52917800C73225 = {
 			isa = PBXGroup;
 			children = (
+				F3EA80282C566B6E004612CF /* SwiftUISampleApp.xctestplan */,
 				F3F1AE9B2C543F270028B236 /* App */,
 				F3F1AE9A2C543F270028B236 /* Core */,
 				F3F1AE9C2C543F270028B236 /* Features */,

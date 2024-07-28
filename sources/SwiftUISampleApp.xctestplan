@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "AFDFA707-90DD-47B8-B5C1-8877DA9240A5",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Core",
+        "identifier" : "CoreTests",
+        "name" : "CoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Features",
+        "identifier" : "AboutTests",
+        "name" : "AboutTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Features",
+        "identifier" : "FeedTests",
+        "name" : "FeedTests"
+      }
+    }
+  ],
+  "version" : 1
+}
