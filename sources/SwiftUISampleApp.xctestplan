@@ -32,6 +32,13 @@
         "identifier" : "FeedTests",
         "name" : "FeedTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Features",
+        "identifier" : "SetupTests",
+        "name" : "SetupTests"
+      }
     }
   ],
   "version" : 1
