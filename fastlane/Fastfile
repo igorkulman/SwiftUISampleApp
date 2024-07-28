@@ -6,6 +6,7 @@ desc "Run Core unit tests"
 lane :tests do
     scan(
         devices: ["iPhone 15"],
+        xcargs: "-skipPackagePluginValidation",
         project: "sources/SwiftUISampleApp.xcodeproj",        
     )
 end
