@@ -36,9 +36,7 @@ public struct FeedView: View {
                     viewModel.showDetail(item: item)
                 }
             }.refreshable {
-                Task {
-                    await viewModel.load()
-                }
+                await viewModel.load()
             }
         }
         .navigationTitle(viewModel.title)
