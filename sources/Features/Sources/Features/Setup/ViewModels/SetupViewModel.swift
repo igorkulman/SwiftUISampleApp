@@ -22,6 +22,7 @@ final class SetupViewModel {
 
     init(settings: Settings, onFinished: @escaping () -> Void) {
         self.settings = settings
+        self.selected = settings.get()
         self.onFinished = onFinished
 
         guard let jsonData = Bundle.module.loadFile(filename: "sources.json") else {

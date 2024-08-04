@@ -33,6 +33,10 @@ final class Coordinator {
         path.append(screen)
     }
 
+    private func pop() {
+        path.removeLast()
+    }
+
     private func showFeed() {
         Logger.appFlow.debug("Showing feed")
         push(screen: .feed)
@@ -53,6 +57,11 @@ final class Coordinator {
         push(screen: .libraries)
     }
 
+    private func showSettings() {
+        Logger.appFlow.debug("Showing settings")
+        pop()
+    }
+
     @ViewBuilder
     func build(screen: Screen) -> some View {
         switch screen {
@@ -67,6 +76,8 @@ final class Coordinator {
                     showDetail(item: item)
                 case .about:
                     showAbout()
+                case .settings:
+                    showSettings()
                 }
             }
         case let .item(item):

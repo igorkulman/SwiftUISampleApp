@@ -45,4 +45,8 @@ final class FeedViewModel {
     func showAbout() {
         onNavigation(.about)
     }
+
+    func showSettings() {
+        onNavigation(.settings)
+    }
 }

@@ -13,6 +13,7 @@ public struct FeedView: View {
     public enum NavigationTarget {
         case item(RssItem)
         case about
+        case settings
     }
 
     @State private var viewModel: FeedViewModel
@@ -46,7 +47,14 @@ public struct FeedView: View {
                 await viewModel.load()
             }
         }.toolbar {
-            ToolbarItem {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    viewModel.showSettings()
+                } label: {
+                    Image(symbol: .gear)
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     viewModel.showAbout()
                 } label: {
