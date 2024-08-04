@@ -36,6 +36,7 @@ extension Feed {
                     if let atomItems = feed.atomFeed?.entries?.compactMap({ RssItem(item: $0) }) {
                         Logger.feed.debug("Got \(atomItems.count) Atom items")
                         continuation.resume(returning: atomItems)
+                        return
                     }
 
                     Logger.feed.error("RSS Feed return no items")
