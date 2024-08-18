@@ -42,10 +42,8 @@ public struct FeedView: View {
         }
         .navigationTitle(viewModel.title)
         .navigationBarBackButtonHidden(true)
-        .onAppear {
-            Task {
-                await viewModel.load()
-            }
+        .task {
+            await viewModel.load()
         }.toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
