@@ -7,31 +7,34 @@
 
 @testable import Setup
 import Foundation
-import XCTest
+import Testing
 
-final class SetupViewModelTests: XCTestCase {
+final class SetupViewModelTests {
+    @Test
     func testLoadedData() {
         let viewModel = SetupViewModel(settings: .mock(selected: nil), onFinished: {})
-        XCTAssertFalse(viewModel.sources.isEmpty)
+        #expect(!viewModel.sources.isEmpty)
     }
 
+    @Test
     func testSelectingASource() {
         let viewModel = SetupViewModel(settings: .mock(selected: nil), onFinished: {})
-        XCTAssertFalse(viewModel.isValid)
+        #expect(!viewModel.isValid)
 
         viewModel.select(source: .mock)
-        XCTAssertTrue(viewModel.isValid)
+        #expect(viewModel.isValid)
     }
 
+    @Test
     func testNavigation() {
         var finished: Bool = false
         let viewModel = SetupViewModel(settings: .mock(selected: nil)) {
             finished = true
         }
-        XCTAssertFalse(finished)
+        #expect(!finished)
 
         viewModel.select(source: .mock)
         viewModel.onNext()
-        XCTAssertTrue(finished)
+        #expect(finished)
     }
 }

@@ -8,15 +8,17 @@
 @testable import Core
 @testable import Feed
 import Foundation
-import XCTest
+import Testing
 
-final class FeedTests: XCTestCase {
+final class FeedTests {
+    @Test
     func testFetchingValidFeed() async throws {
         let feed = Feed.live
         let items = try await feed.get(.mock)
-        XCTAssert(!items.isEmpty)
+        #expect(!items.isEmpty)
     }
 
+    @Test
     func testFetchingInvalidFeed()  async throws {
         let feed = Feed.live
         var didFailWithError: Error?
@@ -26,6 +28,6 @@ final class FeedTests: XCTestCase {
             didFailWithError = error
         }
 
-        XCTAssertNotNil(didFailWithError)
+        #expect(didFailWithError != nil)
     }
 }

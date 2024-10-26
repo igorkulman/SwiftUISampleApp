@@ -7,20 +7,21 @@
 
 @testable import About
 import Foundation
-import XCTest
+import Testing
 
-final class AboutViewModelTests: XCTestCase {
+final class AboutViewModelTests {
+    @Test
     func testNavigation() {
         var target: AboutView.NavigationTarget?
         let viewModel = AboutViewModel {
             target = $0
         }
-        XCTAssertNil(target)
+        #expect(target == nil)
         viewModel.showLibraries()
-        XCTAssertEqual(target, .libraries)
+        #expect(target == .libraries)
 
-        XCTAssertFalse(viewModel.showWebView)
+        #expect(!viewModel.showWebView)
         viewModel.showBlog()
-        XCTAssertTrue(viewModel.showWebView)
+        #expect(viewModel.showWebView)
     }
 }
