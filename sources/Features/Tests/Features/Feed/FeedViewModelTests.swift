@@ -8,29 +8,31 @@
 @testable import Core
 @testable import Feed
 import Foundation
-import XCTest
+import Testing
 
-final class FeedViewModelTests: XCTestCase {
+final class FeedViewModelTests {
+    @Test
     func testNavigation() {
         var target: FeedView.NavigationTarget? = nil
         let viewModel = FeedViewModel(settings: .mock(selected: .mock), feed: .mock) {
             target = $0
         }
-        XCTAssertNil(target)
+        #expect(target == nil)
 
         viewModel.showAbout()
-        XCTAssertEqual(target, .about)
+        #expect(target == .about)
 
         viewModel.showDetail(item: .mock)
-        XCTAssertEqual(target, .item(.mock))
+        #expect(target == .item(.mock))
     }
 
+    @Test
     func testLoading() async {
         let viewModel = FeedViewModel(settings: .mock(selected: .mock), feed: .mock) { _ in  }
-        XCTAssertEqual(viewModel.state, .loading)
+        #expect(viewModel.state == .loading)
 
         await viewModel.load()
-        XCTAssertEqual(viewModel.state, .loaded(data: [
+        #expect(viewModel.state == .loaded(data: [
             .init(
                 title: "Links for the intellectually curious, ranked by readers.",
                 description: "Comments",
@@ -58,12 +60,13 @@ final class FeedViewModelTests: XCTestCase {
         ]))
     }
 
+    @Test
     func testError() async {
         let viewModel = FeedViewModel(settings: .mock(selected: .mock), feed: .mock(error: .emptyFeed)) { _ in  }
-        XCTAssertEqual(viewModel.state, .loading)
+        #expect(viewModel.state == .loading)
 
         await viewModel.load()
-        XCTAssertEqual(viewModel.state, .error(data: [], error: FeedError.emptyFeed))
+        #expect(viewModel.state == .error(data: [], error: FeedError.emptyFeed))
     }
 }
 

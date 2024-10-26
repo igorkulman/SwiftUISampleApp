@@ -7,11 +7,12 @@
 
 @testable import About
 import Foundation
-import XCTest
+import Testing
 
-final class LibraryViewModelTests: XCTestCase {
+final class LibraryViewModelTests {
+    @Test
     func testLoadedData() {
         let viewModel = LibraryViewModel()
-        XCTAssertEqual(viewModel.libraries.count, 2)
+        #expect(viewModel.libraries.count == 2)
     }
 }

@@ -7,30 +7,31 @@
 
 @testable import Core
 import Foundation
-import XCTest
+import Testing
 
-final class SettingsTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-
+final class SettingsTests {
+    init() {
         UserDefaults.standard.removeObject(forKey: "source")
     }
 
+    @Test
     func testInitialGet() {
         let settings = Settings.live
-        XCTAssertNil(settings.get())
+        #expect(settings.get() == nil)
     }
 
+    @Test
     func testSetAndGet() {
         let settings = Settings.live
         settings.set(.mock)
-        XCTAssertEqual(settings.get(), .mock)
+        #expect(settings.get() == .mock)
     }
 
+    @Test
     func testRemoving() {
         let settings = Settings.live
         settings.set(.mock)
         settings.set(nil)
-        XCTAssertNil(settings.get())
+        #expect(settings.get() == nil)
     }
 }
