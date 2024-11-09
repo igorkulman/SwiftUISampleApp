@@ -16,20 +16,8 @@ final class AddSourceViewModel {
     var rssUrl: String = ""
     var imageUrl: String = ""
 
-    var isTitleValid: Bool {
-        !title.isEmpty
-    }
-
-    var isUrlValid: Bool {
-        !url.isEmpty && URL(string: url) != nil
-    }
-
-    var isRssUrlValid: Bool {
-        !rssUrl.isEmpty && URL(string: rssUrl) != nil
-    }
-
     var isValid: Bool {
-        isTitleValid && isUrlValid && isRssUrlValid
+        !title.isEmpty && url.isValidURL && rssUrl.isValidURL && (imageUrl.isEmpty || imageUrl.isValidURL)
     }
 
     private let onFinished: (RssSource?) -> Void
