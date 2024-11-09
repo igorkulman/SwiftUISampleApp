@@ -42,6 +42,10 @@ final class SetupViewModel {
         selected = source
     }
 
+    func add(source: RssSource) {
+        sources.append(source)
+    }
+
     func onNext() {
         settings.set(selected)
         onFinished()

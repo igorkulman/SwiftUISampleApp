@@ -1,6 +1,39 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "Add" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pridať"
+          }
+        }
+      }
+    },
+    "Add source" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pridať zdroj"
+          }
+        }
+      }
+    },
+    "Image URL (optional)" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL obrázka (voliteľné)"
+          }
+        }
+      }
+    },
     "Next" : {
       "localizations" : {
         "sk" : {
@@ -11,12 +44,42 @@
         }
       }
     },
+    "RSS URL" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS URL"
+          }
+        }
+      }
+    },
     "Select source" : {
       "localizations" : {
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Výber zdroja"
+          }
+        }
+      }
+    },
+    "Title" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Názov"
+          }
+        }
+      }
+    },
+    "URL" : {
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
           }
         }
       }

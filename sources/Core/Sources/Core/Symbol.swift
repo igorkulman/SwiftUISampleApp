@@ -13,6 +13,8 @@ public enum Symbol: String {
     case checkmark
     case rightChevron = "chevron.right"
     case gear
+    case plus
+    case close = "xmark"
 }
 
 public extension Image {

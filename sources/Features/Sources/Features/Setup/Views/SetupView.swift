@@ -11,6 +11,7 @@ import SwiftUI
 
 public struct SetupView: View {
     @State private var viewModel: SetupViewModel
+    @State private var showingAddSheet = false
 
     public init(settings: Settings, onFinished: @escaping () -> Void) {
         viewModel = SetupViewModel(
@@ -26,10 +27,27 @@ public struct SetupView: View {
             }
         }.navigationTitle(Text("Select source", bundle: .module))
             .toolbar {
-                ToolbarItem {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showingAddSheet = true
+                    } label: {
+                        Image(symbol: .plus)
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     Button(NSLocalizedString("Next", bundle: .module, comment: "")) {
                         viewModel.onNext()
                     }.disabled(!viewModel.isValid)
+                }
+            }
+            .sheet(isPresented: $showingAddSheet) {
+                NavigationStack {
+                    AddSourceView { source in
+                        showingAddSheet = false
+                        if let source {
+                            viewModel.add(source: source)
+                        }
+                    }
                 }
             }
     }
