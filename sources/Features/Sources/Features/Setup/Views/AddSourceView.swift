@@ -21,25 +21,16 @@ struct AddSourceView: View {
     var body: some View {
         Form {
             Section(header: Text("Title", bundle: .module)) {
-                TextField("", text: $viewModel.title)
+                FormField(type: .string(required: true), text: $viewModel.title)
             }
             Section(header: Text("URL", bundle: .module)) {
-                TextField("", text: $viewModel.url)
-                    .keyboardType(.URL)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
+                FormField(type: .url(required: true), text: $viewModel.url)
             }
             Section(header: Text("RSS URL", bundle: .module)) {
-                TextField("", text: $viewModel.rssUrl)
-                    .keyboardType(.URL)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
+                FormField(type: .url(required: true), text: $viewModel.rssUrl)
             }
             Section(header: Text("Image URL (optional)", bundle: .module)) {
-                TextField("", text: $viewModel.imageUrl)
-                    .keyboardType(.URL)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
+                FormField(type: .url(required: false), text: $viewModel.imageUrl)
             }
         }.navigationBarTitle(Text("Add source", bundle: .module))
             .toolbar {
