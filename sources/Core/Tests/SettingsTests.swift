@@ -9,6 +9,7 @@
 import Foundation
 import Testing
 
+@Suite(.serialized)
 final class SettingsTests {
     init() {
         UserDefaults.standard.removeObject(forKey: "source")
