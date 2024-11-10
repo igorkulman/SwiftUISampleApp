@@ -9,7 +9,5 @@ import Foundation
 import OSLog
 
 extension Logger {
-    private static var subsystem = Bundle.main.bundleIdentifier!
-
     static let feed = Logger(subsystem: subsystem, category: "feed")
 }
