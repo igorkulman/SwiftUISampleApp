@@ -14,7 +14,7 @@ final class FeedViewModelTests {
     @Test
     func testNavigation() {
         var target: FeedView.NavigationTarget? = nil
-        let viewModel = FeedViewModel(settings: .mock(selected: .mock), feed: .mock) {
+        let viewModel = FeedViewModel(source: .mock, feed: .mock) {
             target = $0
         }
         #expect(target == nil)
@@ -28,7 +28,7 @@ final class FeedViewModelTests {
 
     @Test
     func testLoading() async {
-        let viewModel = FeedViewModel(settings: .mock(selected: .mock), feed: .mock) { _ in  }
+        let viewModel = FeedViewModel(source: .mock, feed: .mock) { _ in  }
         #expect(viewModel.state == .loading)
 
         await viewModel.load()
@@ -62,7 +62,7 @@ final class FeedViewModelTests {
 
     @Test
     func testError() async {
-        let viewModel = FeedViewModel(settings: .mock(selected: .mock), feed: .mock(error: .emptyFeed)) { _ in  }
+        let viewModel = FeedViewModel(source: .mock, feed: .mock(error: .emptyFeed)) { _ in  }
         #expect(viewModel.state == .loading)
 
         await viewModel.load()
@@ -83,7 +83,7 @@ extension FeedView.NavigationTarget: Equatable {
     }
 }
 
-extension ScreenState<[RssItem]>: Equatable {
+extension ScreenState<[RssItem]>: @retroactive Equatable {
     public static func == (lhs: Core.ScreenState<T>, rhs: Core.ScreenState<T>) -> Bool {
         switch (lhs, rhs) {
         case (.loading,.loading):

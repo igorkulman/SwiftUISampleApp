@@ -5,12 +5,13 @@
 //  Created by Igor Kulman on 26.07.2024.
 //
 
+import Core
 import Feed
 import Foundation
 
 enum Screen: Identifiable, Hashable {
     case setup
-    case feed
+    case feed(RssSource)
     case item(RssItem)
     case about
     case libraries

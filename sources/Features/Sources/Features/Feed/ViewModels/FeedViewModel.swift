@@ -19,11 +19,7 @@ final class FeedViewModel {
     private let feed: Feed
     private let source: RssSource
 
-    init(settings: Settings, feed: Feed, onNavigation: @escaping (FeedView.NavigationTarget) -> Void) {
-        guard let source = settings.get() else {
-            fatalError()
-        }
-
+    init(source: RssSource, feed: Feed, onNavigation: @escaping (FeedView.NavigationTarget) -> Void) {
         self.onNavigation = onNavigation
         self.feed = feed
         self.source = source

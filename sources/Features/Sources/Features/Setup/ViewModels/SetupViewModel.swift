@@ -18,9 +18,9 @@ final class SetupViewModel {
     }
 
     private let settings: Settings
-    private let onFinished: () -> Void
+    private let onFinished: (RssSource) -> Void
 
-    init(settings: Settings, onFinished: @escaping () -> Void) {
+    init(settings: Settings, onFinished: @escaping (RssSource) -> Void) {
         self.settings = settings
         self.selected = settings.get()
         self.onFinished = onFinished
@@ -47,7 +47,11 @@ final class SetupViewModel {
     }
 
     func onNext() {
+        guard let selected = selected else {
+            return
+        }
+
         settings.set(selected)
-        onFinished()
+        onFinished(selected)
     }
 }

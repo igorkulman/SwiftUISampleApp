@@ -12,13 +12,13 @@ import Testing
 final class SetupViewModelTests {
     @Test
     func testLoadedData() {
-        let viewModel = SetupViewModel(settings: .mock(selected: nil), onFinished: {})
+        let viewModel = SetupViewModel(settings: .mock(selected: nil), onFinished: { _ in })
         #expect(!viewModel.sources.isEmpty)
     }
 
     @Test
     func testSelectingASource() {
-        let viewModel = SetupViewModel(settings: .mock(selected: nil), onFinished: {})
+        let viewModel = SetupViewModel(settings: .mock(selected: nil), onFinished: { _ in })
         #expect(!viewModel.isValid)
 
         viewModel.select(source: .mock)
@@ -28,7 +28,7 @@ final class SetupViewModelTests {
     @Test
     func testNavigation() {
         var finished: Bool = false
-        let viewModel = SetupViewModel(settings: .mock(selected: nil)) {
+        let viewModel = SetupViewModel(settings: .mock(selected: nil)) { _ in
             finished = true
         }
         #expect(!finished)

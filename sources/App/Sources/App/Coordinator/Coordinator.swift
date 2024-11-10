@@ -6,6 +6,7 @@
 //
 
 import About
+import Core
 import Foundation
 import OSLog
 import Feed
@@ -23,9 +24,9 @@ final class Coordinator {
 
         Logger.appFlow.debug("Starting the coordinator")
 
-        if container.settings.get() != nil {
+        if let source = container.settings.get() {
             Logger.appFlow.info("RSS source already selected, starting with feed")
-            showFeed()
+            showFeed(source: source)
         }
     }
 
@@ -37,9 +38,9 @@ final class Coordinator {
         path.removeLast()
     }
 
-    private func showFeed() {
+    private func showFeed(source: RssSource) {
         Logger.appFlow.debug("Showing feed")
-        push(screen: .feed)
+        push(screen: .feed(source))
     }
 
     private func showDetail(item: RssItem) {
@@ -66,11 +67,11 @@ final class Coordinator {
     func build(screen: Screen) -> some View {
         switch screen {
         case .setup:
-            SetupView(settings: container.settings) { [unowned self] in
-                showFeed()
+            SetupView(settings: container.settings) { [unowned self] source in
+                showFeed(source: source)
             }
-        case .feed:
-            FeedView(settings: container.settings, feed: container.feed) { [unowned self] target in
+        case let .feed(source):
+            FeedView(source: source, feed: container.feed) { [unowned self] target in
                 switch target {
                 case let .item(item):
                     showDetail(item: item)

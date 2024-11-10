@@ -19,12 +19,12 @@ public struct FeedView: View {
     @State private var viewModel: FeedViewModel
 
     public init(
-        settings: Settings,
+        source: RssSource,
         feed: Feed,
         onNavigation: @escaping (NavigationTarget) -> Void
     ) {
         viewModel = FeedViewModel(
-            settings: settings,
+            source: source,
             feed: feed,
             onNavigation: onNavigation
         )
@@ -65,11 +65,11 @@ public struct FeedView: View {
 
 #Preview("Success") {
     NavigationStack {
-        FeedView(settings: .mock(selected: .mock), feed: .mock, onNavigation: { _ in })
+        FeedView(source: .mock, feed: .mock, onNavigation: { _ in })
     }
 }
 #Preview("Error") {
     NavigationStack {
-        FeedView(settings: .mock(selected: .mock), feed: .mock(error: .emptyFeed), onNavigation: { _ in })
+        FeedView(source: .mock, feed: .mock(error: .emptyFeed), onNavigation: { _ in })
     }
 }
