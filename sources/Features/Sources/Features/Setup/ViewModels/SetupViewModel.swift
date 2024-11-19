@@ -17,12 +17,11 @@ final class SetupViewModel {
         selected != nil
     }
 
-    private let settings: Settings
+    @ObservationIgnored @Dependency(\.settings) private var settings: Settings
+
     private let onFinished: (RssSource) -> Void
 
-    init(settings: Settings, onFinished: @escaping (RssSource) -> Void) {
-        self.settings = settings
-        self.selected = settings.get()
+    init(onFinished: @escaping (RssSource) -> Void) {
         self.onFinished = onFinished
 
         guard let jsonData = Bundle.module.loadFile(filename: "sources.json") else {
@@ -36,6 +35,8 @@ final class SetupViewModel {
         } catch {
             fatalError()
         }
+
+        self.selected = settings.get()
     }
 
     func select(source: RssSource) {

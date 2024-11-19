@@ -50,6 +50,17 @@ extension Feed {
     })
 }
 
+extension DependencyValues {
+    struct FeedKey: DependencyKey {
+        static var currentValue: Feed = .live
+    }
+
+    var feed: Feed {
+        get { Self[FeedKey.self] }
+        set { Self[FeedKey.self] = newValue }
+    }
+}
+
 #if DEBUG
 // swiftlint:disable line_length
 extension Feed {

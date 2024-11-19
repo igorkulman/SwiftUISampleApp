@@ -16,12 +16,11 @@ final class FeedViewModel {
     var state: ScreenState<[RssItem]> = .loading
 
     private let onNavigation: (FeedView.NavigationTarget) -> Void
-    private let feed: Feed
+    @ObservationIgnored @Dependency(\.feed) private var feed: Feed
     private let source: RssSource
 
-    init(source: RssSource, feed: Feed, onNavigation: @escaping (FeedView.NavigationTarget) -> Void) {
+    init(source: RssSource, onNavigation: @escaping (FeedView.NavigationTarget) -> Void) {
         self.onNavigation = onNavigation
-        self.feed = feed
         self.source = source
     }
 

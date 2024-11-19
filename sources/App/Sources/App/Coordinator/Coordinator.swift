@@ -17,14 +17,12 @@ import SwiftUI
 final class Coordinator {
     var path = NavigationPath()
 
-    private let container: Container
+    @ObservationIgnored @Dependency(\.settings) private var settings: Settings
 
-    init(container: Container) {
-        self.container = container
-
+    init() {
         Logger.appFlow.debug("Starting the coordinator")
 
-        if let source = container.settings.get() {
+        if let source = settings.get() {
             Logger.appFlow.info("RSS source already selected, starting with feed")
             showFeed(source: source)
         }
@@ -67,11 +65,11 @@ final class Coordinator {
     func build(screen: Screen) -> some View {
         switch screen {
         case .setup:
-            SetupView(settings: container.settings) { [unowned self] source in
+            SetupView { [unowned self] source in
                 showFeed(source: source)
             }
         case let .feed(source):
-            FeedView(source: source, feed: container.feed) { [unowned self] target in
+            FeedView(source: source) { [unowned self] target in
                 switch target {
                 case let .item(item):
                     showDetail(item: item)

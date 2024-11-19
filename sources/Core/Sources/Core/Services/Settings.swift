@@ -27,6 +27,17 @@ extension Settings {
         })
 }
 
+public extension DependencyValues {
+    struct SettingsKey: DependencyKey {
+        public static var currentValue: Settings = .live
+    }
+
+    var settings: Settings {
+        get { Self[SettingsKey.self] }
+        set { Self[SettingsKey.self] = newValue }
+    }
+}
+
 #if DEBUG
 extension Settings {
     public static func mock(selected: RssSource?) -> Self {

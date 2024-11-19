@@ -6,19 +6,25 @@
 //
 
 @testable import Setup
+import Core
 import Foundation
 import Testing
 
+@Suite(.serialized)
 final class SetupViewModelTests {
+    init() {
+        DependencyValues[\.settings] = .mock(selected: nil)
+    }
+
     @Test
     func testLoadedData() {
-        let viewModel = SetupViewModel(settings: .mock(selected: nil), onFinished: { _ in })
+        let viewModel = SetupViewModel(onFinished: { _ in })
         #expect(!viewModel.sources.isEmpty)
     }
 
     @Test
     func testSelectingASource() {
-        let viewModel = SetupViewModel(settings: .mock(selected: nil), onFinished: { _ in })
+        let viewModel = SetupViewModel(onFinished: { _ in })
         #expect(!viewModel.isValid)
 
         viewModel.select(source: .mock)
@@ -28,7 +34,7 @@ final class SetupViewModelTests {
     @Test
     func testNavigation() {
         var finished: Bool = false
-        let viewModel = SetupViewModel(settings: .mock(selected: nil)) { _ in
+        let viewModel = SetupViewModel() { _ in
             finished = true
         }
         #expect(!finished)

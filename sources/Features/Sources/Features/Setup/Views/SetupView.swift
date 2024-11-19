@@ -13,9 +13,8 @@ public struct SetupView: View {
     @State private var viewModel: SetupViewModel
     @State private var showingAddSheet = false
 
-    public init(settings: Settings, onFinished: @escaping (RssSource) -> Void) {
+    public init(onFinished: @escaping (RssSource) -> Void) {
         viewModel = SetupViewModel(
-            settings: settings,
             onFinished: onFinished
         )
     }
@@ -55,6 +54,7 @@ public struct SetupView: View {
 
 #Preview {
     NavigationStack {
-        SetupView(settings: .mock(selected: nil), onFinished: { _ in })
+        SetupView(onFinished: { _ in })
+            .dependency(\.settings, .mock(selected: nil))
     }
 }

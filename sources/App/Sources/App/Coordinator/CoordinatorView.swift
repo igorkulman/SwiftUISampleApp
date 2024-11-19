@@ -11,8 +11,8 @@ import SwiftUI
 public struct CoordinatorView: View {
     @State private var coordinator: Coordinator
 
-    public init(container: Container) {
-        coordinator = Coordinator(container: container)
+    public init() {
+        coordinator = Coordinator()
     }
 
     public var body: some View {

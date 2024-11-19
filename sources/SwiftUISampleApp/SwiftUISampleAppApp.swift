@@ -12,7 +12,7 @@ import SwiftUI
 struct SwiftUISampleAppApp: App {
     var body: some Scene {
         WindowGroup {
-            CoordinatorView(container: .live)
+            CoordinatorView()
         }
     }
 }

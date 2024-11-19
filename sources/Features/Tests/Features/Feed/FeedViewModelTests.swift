@@ -10,11 +10,16 @@
 import Foundation
 import Testing
 
+@Suite(.serialized)
 final class FeedViewModelTests {
+    init() {
+        DependencyValues[\.feed] = .mock
+    }
+
     @Test
     func testNavigation() {
         var target: FeedView.NavigationTarget? = nil
-        let viewModel = FeedViewModel(source: .mock, feed: .mock) {
+        let viewModel = FeedViewModel(source: .mock) {
             target = $0
         }
         #expect(target == nil)
@@ -28,7 +33,7 @@ final class FeedViewModelTests {
 
     @Test
     func testLoading() async {
-        let viewModel = FeedViewModel(source: .mock, feed: .mock) { _ in  }
+        let viewModel = FeedViewModel(source: .mock) { _ in  }
         #expect(viewModel.state == .loading)
 
         await viewModel.load()
@@ -62,7 +67,8 @@ final class FeedViewModelTests {
 
     @Test
     func testError() async {
-        let viewModel = FeedViewModel(source: .mock, feed: .mock(error: .emptyFeed)) { _ in  }
+        DependencyValues[\.feed] = .mock(error: .emptyFeed)
+        let viewModel = FeedViewModel(source: .mock) { _ in  }
         #expect(viewModel.state == .loading)
 
         await viewModel.load()
