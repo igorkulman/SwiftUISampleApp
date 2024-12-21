@@ -8,12 +8,6 @@
 import Foundation
 import FeedKit
 
-private let sanitize = { (string: String?) -> String? in
-    return string?
-        .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-        .trimmingCharacters(in: .whitespacesAndNewlines)
-}
-
 extension RssItem {
     init?(item: AtomFeedEntry) {
         guard let title = item.title,
@@ -24,7 +18,7 @@ extension RssItem {
         }
         self.init(
             title: title,
-            description: sanitize(item.content?.value),
+            description: item.content?.value?.sanitized,
             link: link,
             pubDate: item.updated
         )
@@ -37,7 +31,7 @@ extension RssItem {
         }
         self.init(
             title: title,
-            description: sanitize(item.description),
+            description: item.description?.sanitized,
             link: link,
             pubDate: item.pubDate
         )

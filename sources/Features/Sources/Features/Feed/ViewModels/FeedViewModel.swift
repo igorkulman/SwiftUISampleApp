@@ -25,6 +25,7 @@ final class FeedViewModel {
         self.source = source
     }
 
+    @MainActor
     func load() async {
         do {
             let items = try await feed.get(source)

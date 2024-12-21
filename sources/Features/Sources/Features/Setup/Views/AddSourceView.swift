@@ -52,6 +52,6 @@ struct AddSourceView: View {
 
 #Preview {
     NavigationStack {
-        AddSourceView(onFinished: { print($0) })
+        AddSourceView(onFinished: { _ in })
     }
 }

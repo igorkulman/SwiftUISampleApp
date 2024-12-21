@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RssItem: Hashable, Equatable {
+public struct RssItem: Hashable, Equatable, Sendable {
     public let title: String
     public let description: String?
     public let link: URL
@@ -18,7 +18,7 @@ public struct RssItem: Hashable, Equatable {
 // swiftlint:disable line_length
 extension RssItem {
     static var mock: Self {
-        return .init(
+        RssItem(
             title: "Anyone can access deleted and private repository data on GitHub",
             description: "Comments",
             link: URL(string: "https://trufflesecurity.com/blog/anyone-can-access-deleted-and-private-repo-data-github")!,
