@@ -9,13 +9,13 @@ import Core
 import Feed
 import Foundation
 
-public struct Container {
+public struct Container: Sendable {
     var settings: Settings
     var feed: Feed
 }
 
 extension Container {
-    public static var live: Self = Container(
+    public static let live: Self = Container(
         settings: .live,
         feed: .live
     )
@@ -23,9 +23,11 @@ extension Container {
 
 #if DEBUG
 extension Container {
-    public static var mock: Self = Container(
-        settings: .mock(selected: nil),
-        feed: .mock
-    )
+    public static var mock: Self {
+        Container(
+            settings: .mock(selected: nil),
+            feed: .mock
+        )
+    }
 }
 #endif
