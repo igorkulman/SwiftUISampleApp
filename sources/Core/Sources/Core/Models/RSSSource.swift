@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RssSource: Codable, Hashable {
+public struct RssSource: Codable, Hashable, Sendable {
     public let title: String
     public let url: URL
     public let rss: URL
@@ -23,11 +23,13 @@ public struct RssSource: Codable, Hashable {
 
 #if DEBUG
 extension RssSource {
-    public static var mock: Self = RssSource(
-        title: "Hacker News",
-        url: URL(string: "https://news.ycombinator.com")!,
-        rss: URL(string: "https://news.ycombinator.com/rss")!,
-        icon: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Y_Combinator_Logo_400.gif"
-    )
+    public static var mock: Self {
+        RssSource(
+            title: "Hacker News",
+            url: URL(string: "https://news.ycombinator.com")!,
+            rss: URL(string: "https://news.ycombinator.com/rss")!,
+            icon: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Y_Combinator_Logo_400.gif"
+        )
+    }
 }
 #endif

@@ -7,14 +7,14 @@
 
 import Foundation
 
-public struct Settings {
-    public var get: () -> RssSource?
-    public var set: (RssSource?) -> Void
+public struct Settings: Sendable {
+    public var get: @Sendable () -> RssSource?
+    public var set: @Sendable (RssSource?) -> Void
 }
 
 extension Settings {
     private static let key = "source"
-    public static var live: Self = Settings(
+    public static let live: Self = Settings(
         get: {
             UserDefaults.standard.data(forKey: Self.key)
                 .flatMap { try?  JSONDecoder().decode(RssSource.self, from: $0) }
