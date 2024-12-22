@@ -27,6 +27,7 @@ final class FeedViewModelTests {
     }
 
     @Test
+    @MainActor
     func testLoading() async {
         let viewModel = FeedViewModel(source: .mock, feed: .mock) { _ in  }
         #expect(viewModel.state == .loading)
@@ -61,6 +62,7 @@ final class FeedViewModelTests {
     }
 
     @Test
+    @MainActor
     func testError() async {
         let viewModel = FeedViewModel(source: .mock, feed: .mock(error: .emptyFeed)) { _ in  }
         #expect(viewModel.state == .loading)
