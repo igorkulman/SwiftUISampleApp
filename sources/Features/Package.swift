@@ -35,11 +35,6 @@ let package = Package(
             ],
             plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
         ),
-        .testTarget(
-            name: "AboutTests",
-            dependencies: ["About"],
-            path: "Tests/Features/About"
-        ),
         .target(
             name: "Setup",
             dependencies: [
@@ -51,11 +46,6 @@ let package = Package(
             ],
             plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
         ),
-        .testTarget(
-            name: "SetupTests",
-            dependencies: ["Setup"],
-            path: "Tests/Features/Setup"
-        ),
         .target(
             name: "Feed",
             dependencies: [
@@ -64,11 +54,6 @@ let package = Package(
             ],
             path: "Sources/Features/Feed",
             plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
-        ),
-        .testTarget(
-            name: "FeedTests",
-            dependencies: ["Feed"],
-            path: "Tests/Features/Feed"
         )
     ]
 )

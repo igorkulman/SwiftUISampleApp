@@ -16,49 +16,60 @@ public struct FeedView: View {
         case settings
     }
 
-    @State private var viewModel: FeedViewModel
+    @State var state: ScreenState<[RssItem]> = .loading
+
+    let onNavigation: (NavigationTarget) -> Void
+    let source: RssSource
+    let feed: Feed
 
     public init(
         source: RssSource,
         feed: Feed,
         onNavigation: @escaping (NavigationTarget) -> Void
     ) {
-        viewModel = FeedViewModel(
-            source: source,
-            feed: feed,
-            onNavigation: onNavigation
-        )
+        self.onNavigation = onNavigation
+        self.source = source
+        self.feed = feed
     }
 
     public var body: some View {
-        LoadableScreen($viewModel.state) { data in
+        LoadableScreen($state) { data in
             List(data, id: \.title) { item in
                 ItemRow(item: item) {
-                    viewModel.showDetail(item: item)
+                   onNavigation(.item(item))
                 }
             }.refreshable {
-                await viewModel.load()
+                await load()
             }
         }
-        .navigationTitle(viewModel.title)
+        .navigationTitle(source.title)
         .navigationBarBackButtonHidden(true)
         .task {
-            await viewModel.load()
+            await load()
         }.toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
-                    viewModel.showSettings()
+                    onNavigation(.settings)
                 } label: {
                     Image(symbol: .gear)
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    viewModel.showAbout()
+                    onNavigation(.about)
                 } label: {
                     Image(symbol: .info)
                 }
             }
+        }
+    }
+
+    private func load() async {
+        do {
+            let items = try await feed.get(source)
+            state = .loaded(data: items)
+        } catch {
+            state.toError(error: error)
         }
     }
 }

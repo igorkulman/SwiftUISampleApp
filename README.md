@@ -9,7 +9,6 @@ SwiftUI rewrite of my [iOSSampleApp](https://github.com/igorkulman/iOSSampleApp/
 * [Coordinators](https://blog.kulman.sk/architecting-ios-apps-coordinators/)
 * Dependency Injection
 * Modularization with SPM
-* MVVM
 
 ### Other concepts
 
@@ -25,7 +24,7 @@ SwiftUI rewrite of my [iOSSampleApp](https://github.com/igorkulman/iOSSampleApp/
 
 ### Prerequisites
 
-* Xcode 15
+* Xcode 16
 * [Fastlane](https://fastlane.tools/) (optional)
 
 ## Built with

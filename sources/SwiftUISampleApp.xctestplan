@@ -18,27 +18,6 @@
         "identifier" : "CoreTests",
         "name" : "CoreTests"
       }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Features",
-        "identifier" : "AboutTests",
-        "name" : "AboutTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Features",
-        "identifier" : "FeedTests",
-        "name" : "FeedTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Features",
-        "identifier" : "SetupTests",
-        "name" : "SetupTests"
-      }
     }
   ],
   "version" : 1

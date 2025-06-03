@@ -14,10 +14,12 @@ public struct AboutView: View {
         case libraries
     }
 
-    @State private var viewModel: AboutViewModel
+    @State var showWebView = false
+
+    let onNavigation: (NavigationTarget) -> Void
 
     public init(onNavigation: @escaping (NavigationTarget) -> Void) {
-        viewModel = AboutViewModel(onNavigation: onNavigation)
+        self.onNavigation = onNavigation
     }
 
     public var body: some View {
@@ -30,21 +32,21 @@ public struct AboutView: View {
                         .scaledToFit()
                         .frame(width: 100)
                         .padding(16)
-                    Text(viewModel.appName)
+                    Text(Bundle.main.appName)
                         .font(.headline)
-                    Text(viewModel.appVersion)
+                    Text("\(Bundle.main.appVersion) (\(Bundle.main.appBuild))")
                         .font(.caption2)
                 }
                 Spacer()
             }
             AboutRow(title: NSLocalizedString("Used libraries", bundle: .module, comment: "")) {
-                viewModel.showLibraries()
+                onNavigation(.libraries)
             }
             AboutRow(title: NSLocalizedString("Author's blog", bundle: .module, comment: "")) {
-                viewModel.showBlog()
+               showWebView = true
             }
         }
-        .fullScreenCover(isPresented: $viewModel.showWebView) {
+        .fullScreenCover(isPresented: $showWebView) {
             SafariWebView(url: URL(string: "https://blog.kulman.sk")!)
                 .ignoresSafeArea()
         }

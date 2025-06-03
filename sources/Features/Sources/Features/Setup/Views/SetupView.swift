@@ -10,20 +10,35 @@ import Foundation
 import SwiftUI
 
 public struct SetupView: View {
-    @State private var viewModel: SetupViewModel
+    @State var sources: [RssSource]
+    @State var selected: RssSource?
     @State private var showingAddSheet = false
 
+    let onFinished: (RssSource) -> Void
+    let settings: Settings
+
     public init(settings: Settings, onFinished: @escaping (RssSource) -> Void) {
-        viewModel = SetupViewModel(
-            settings: settings,
-            onFinished: onFinished
-        )
+        self.settings = settings
+        self.onFinished = onFinished
+        selected = settings.get()
+
+        guard let jsonData = Bundle.module.loadFile(filename: "sources.json") else {
+            fatalError()
+        }
+
+        do {
+            let decoder = JSONDecoder()
+            let all = try decoder.decode(Array<RssSource>.self, from: jsonData)
+            sources = all
+        } catch {
+            fatalError()
+        }
     }
 
     public var body: some View {
-        List(viewModel.sources, id: \.rss) { source in
-            SourceRow(source: source, isSelected: viewModel.selected == source) {
-                viewModel.select(source: source)
+        List(sources, id: \.rss) { source in
+            SourceRow(source: source, isSelected: selected == source) {
+                selected = source
             }
         }.navigationTitle(Text("Select source", bundle: .module))
             .toolbar {
@@ -36,8 +51,13 @@ public struct SetupView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(NSLocalizedString("Next", bundle: .module, comment: "")) {
-                        viewModel.onNext()
-                    }.disabled(!viewModel.isValid)
+                        guard let selected = selected else {
+                            return
+                        }
+
+                        settings.set(selected)
+                        onFinished(selected)
+                    }.disabled(selected == nil)
                 }
             }
             .sheet(isPresented: $showingAddSheet) {
@@ -45,7 +65,7 @@ public struct SetupView: View {
                     AddSourceView { source in
                         showingAddSheet = false
                         if let source {
-                            viewModel.add(source: source)
+                            sources.append(source)
                         }
                     }
                 }
