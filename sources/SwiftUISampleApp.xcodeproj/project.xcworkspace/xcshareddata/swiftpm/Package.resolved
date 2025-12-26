@@ -1,13 +1,13 @@
 {
-  "originHash" : "186a97456128d1e38e3325c8fca67cc2022f3fc856c74bd461c4c95ef82bef03",
+  "originHash" : "11d5d2363525986d2a719358a156d565ee66916e5d8aca0d7318d3ceb8d8762e",
   "pins" : [
     {
       "identity" : "feedkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nmdias/FeedKit",
       "state" : {
-        "revision" : "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
-        "version" : "9.1.2"
+        "revision" : "7cd3569dac2a82118eb22d8bce48d040ef0d014d",
+        "version" : "10.1.3"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
       "state" : {
-        "revision" : "b8431a26655378581890d56b95a0b59aba9f62da",
-        "version" : "0.55.1"
+        "revision" : "ecafb5b056cb7995324f0d310a61f30661d00cad",
+        "version" : "0.62.2"
       }
     }
   ],

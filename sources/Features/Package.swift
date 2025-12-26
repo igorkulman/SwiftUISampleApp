@@ -20,8 +20,8 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Core"),
-        .package(url: "https://github.com/nmdias/FeedKit", exact: "9.1.2"),
-        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", exact: "0.55.1")
+        .package(url: "https://github.com/nmdias/FeedKit", exact: "10.1.3"),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", exact: "0.62.2")
     ],
     targets: [
         .target(

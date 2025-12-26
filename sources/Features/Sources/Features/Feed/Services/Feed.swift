@@ -20,32 +20,24 @@ public struct Feed {
 
 extension Feed {
     public static var live: Self = Feed(get: { source in
-        Logger.feed.debug("Fetching RSS Feed from \(source.rss)")
-
-        let parser = FeedParser(URL: source.rss)
-        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[RssItem], Error>) in
-            parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { result in
-                switch result {
-                case let .success(feed):
-                    if let rssItems = feed.rssFeed?.items?.compactMap({ RssItem(item: $0) }) {
-                        Logger.feed.debug("Got \(rssItems.count) RSS items")
-                        continuation.resume(returning: rssItems)
-                        return
-                    }
-
-                    if let atomItems = feed.atomFeed?.entries?.compactMap({ RssItem(item: $0) }) {
-                        Logger.feed.debug("Got \(atomItems.count) Atom items")
-                        continuation.resume(returning: atomItems)
-                        return
-                    }
-
-                    Logger.feed.error("RSS Feed return no items")
-                    continuation.resume(throwing: FeedError.emptyFeed)
-                case let .failure(error):
-                    Logger.feed.error("Fetching RSS Feed failed [error: \(error.localizedDescription)]")
-                    continuation.resume(throwing: error)
-                }
+        Logger.feed.debug("Loading \(source.rss.absoluteString)")
+        let feed = try await FeedKit.Feed(url: source.rss)
+        switch feed {
+        case let .atom(feed):
+            guard let entries = feed.entries, !entries.isEmpty else {
+                throw FeedError.emptyFeed
             }
+            return entries.compactMap({ RssItem(item: $0) })
+        case let .rss(feed):
+            guard let items = feed.channel?.items, !items.isEmpty else {
+                throw FeedError.emptyFeed
+            }
+            return items.compactMap({ RssItem(item: $0) })
+        case let .json(feed):
+            guard let items = feed.items, !items.isEmpty else {
+                throw FeedError.emptyFeed
+            }
+            return items.compactMap({ RssItem(item: $0) })
         }
     })
 }
