@@ -19,7 +19,8 @@ public struct Feed {
 }
 
 extension Feed {
-    public static var live: Self = Feed(get: { source in
+    @MainActor
+    public static let live: Self = Feed(get: { source in
         Logger.feed.debug("Loading \(source.rss.absoluteString)")
         let feed = try await FeedKit.Feed(url: source.rss)
         switch feed {
@@ -45,6 +46,7 @@ extension Feed {
 #if DEBUG
 // swiftlint:disable line_length
 extension Feed {
+    @MainActor
     public static var mock: Self = Feed(get: { _ in
         try? await Task.sleep(nanoseconds: 1_000_000_000)
         return [

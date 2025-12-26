@@ -14,6 +14,7 @@ import Setup
 import SwiftUI
 
 @Observable
+@MainActor
 final class Coordinator {
     var path = NavigationPath()
 

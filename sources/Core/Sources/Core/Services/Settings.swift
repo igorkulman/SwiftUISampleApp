@@ -14,7 +14,8 @@ public struct Settings {
 
 extension Settings {
     private static let key = "source"
-    public static var live: Self = Settings(
+    @MainActor
+    public static let live: Self = Settings(
         get: {
             UserDefaults.standard.data(forKey: Self.key)
                 .flatMap { try?  JSONDecoder().decode(RssSource.self, from: $0) }

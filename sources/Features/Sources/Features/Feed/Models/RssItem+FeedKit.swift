@@ -8,7 +8,7 @@
 import Foundation
 import FeedKit
 
-private let sanitize = { (string: String?) -> String? in
+@MainActor private let sanitize = { (string: String?) -> String? in
     return string?
         .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         .trimmingCharacters(in: .whitespacesAndNewlines)

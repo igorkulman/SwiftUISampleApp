@@ -15,6 +15,7 @@ public struct Container {
 }
 
 extension Container {
+    @MainActor
     public static var live: Self = Container(
         settings: .live,
         feed: .live
@@ -23,6 +24,7 @@ extension Container {
 
 #if DEBUG
 extension Container {
+    @MainActor
     public static var mock: Self = Container(
         settings: .mock(selected: nil),
         feed: .mock
